@@ -9,12 +9,11 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f9;
-            overflow-x: hidden;
+            text-align: center;
         }
 
         .container {
-            text-align: center;
-            margin-top: 120px;
+            margin-top: 100px;
         }
 
         input, button {
@@ -31,7 +30,22 @@
             border-radius: 5px;
         }
 
-        /* FULL SCREEN EXPLOSION */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            display: none;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 15px;
+        }
+
+        th {
+            background: #002147;
+            color: white;
+        }
+
         .explosion {
             position: fixed;
             top: 0;
@@ -46,7 +60,6 @@
             flex-direction: column;
             font-size: 50px;
             font-weight: bold;
-            text-align: center;
             z-index: 9999;
             display: none;
             animation: flash 0.3s infinite alternate;
@@ -57,7 +70,6 @@
             to { background: darkred; }
         }
 
-        /* Screen shake */
         .shake {
             animation: shake 0.5s;
         }
@@ -69,71 +81,23 @@
             75% { transform: translate(-5px, 5px); }
             100% { transform: translate(0px, 0px); }
         }
-
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: yellow;
-            top: 0;
-            animation: fall 3s linear infinite;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-            }
-        }
-
     </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h2> SMCE UG Results - February 2026</h2>
+    <h2>SMCE UG Results - February 2026</h2>
     <input type="text" placeholder="Register Number">
     <br>
     <input type="date">
     <br>
-    <button onclick="explode()">Get Result</button>
-</div>
+    <button onclick="showFakeResult()">Get Result</button>
 
-<div class="explosion" id="boom">
-    🎉 FAILED IN ALL PAPERS 😂 🎉
-    <div style="font-size:20px; color:white; margin-top:20px;">
-        Better luck next semester 😈
-    </div>
-</div>
-
-<script>
-function explode() {
-
-    document.body.classList.add("shake");
-
-    setTimeout(function(){
-        document.getElementById("boom").style.display = "flex";
-        createConfetti();
-    }, 1000);
-}
-
-function createConfetti() {
-    for (let i = 0; i < 100; i++) {
-        let confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.backgroundColor = randomColor();
-        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        document.body.appendChild(confetti);
-    }
-}
-
-function randomColor() {
-    const colors = ["red", "yellow", "blue", "green", "orange", "pink"];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
-</script>
-
-</body>
-</html>
+    <table id="marksTable">
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        <tr><td>Mathematics</td><td>23</td></tr>
+        <tr><td>Data Structures
